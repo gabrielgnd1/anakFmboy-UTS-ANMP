@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.FragmentUkur">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txtTinggi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tinggi Badan (cm)"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.195"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="243dp" />
+
+        <TextView
+            android:id="@+id/txtBerat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="112dp"
+            android:text="Berat Badan (KG)"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.191"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtUsia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="88dp"
+            android:text="Usia (tahun)"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.164"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTinggi" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputBB"
+            android:layout_width="191dp"
+            android:layout_height="36dp"
+            app:layout_constraintBottom_toTopOf="@+id/txtTinggi"
+            app:layout_constraintTop_toBottomOf="@+id/txtBerat"
+            tools:layout_editor_absoluteX="55dp" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputBB2"
+            android:layout_width="191dp"
+            android:layout_height="36dp"
+            app:layout_constraintBottom_toTopOf="@+id/txtUsia"
+            app:layout_constraintTop_toBottomOf="@+id/txtTinggi"
+            tools:layout_editor_absoluteX="58dp" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputBB3"
+            android:layout_width="191dp"
+            android:layout_height="36dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtUsia"
+            app:layout_constraintVertical_bias="0.104"
+            tools:layout_editor_absoluteX="58dp" />
+
+        <Button
+            android:id="@+id/btnTambahData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TAMBAH DATA"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputBB3"
+            app:layout_constraintVertical_bias="0.098"
+            tools:layout_editor_absoluteX="58dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

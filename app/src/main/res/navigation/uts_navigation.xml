@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/uts_navigation"
+    app:startDestination="@id/itemProfile">
+    <fragment
+        android:id="@+id/itemUkur"
+        android:name="com.mnkgd.anakfmboy.view.FragmentUkur"
+        android:label="fragment_ukur"
+        tools:layout="@layout/fragment_ukur" >
+        <action
+            android:id="@+id/actionFragmenData"
+            app:destination="@id/itemData" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemData"
+        android:name="com.mnkgd.anakfmboy.view.FragmentData"
+        android:label="fragment_data"
+        tools:layout="@layout/fragment_data" >
+        <action
+            android:id="@+id/actionFragmentProfil"
+            app:destination="@id/itemProfile" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemProfile"
+        android:name="com.mnkgd.anakfmboy.view.FragmentProfilAnak"
+        android:label="fragment_profil_anak"
+        tools:layout="@layout/fragment_profil_anak" >
+        <action
+            android:id="@+id/actionFragmentUkur"
+            app:destination="@id/itemUkur" />
+    </fragment>
+</navigation>
