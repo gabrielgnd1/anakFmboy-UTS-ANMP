@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/uts_navigation"
-    app:startDestination="@id/itemProfile">
+    app:startDestination="@id/itemUkur">
     <fragment
         android:id="@+id/itemUkur"
         android:name="com.mnkgd.anakfmboy.view.FragmentUkur"
@@ -26,9 +26,5 @@
         android:id="@+id/itemProfile"
         android:name="com.mnkgd.anakfmboy.view.FragmentProfilAnak"
         android:label="fragment_profil_anak"
-        tools:layout="@layout/fragment_profil_anak" >
-        <action
-            android:id="@+id/actionFragmentUkur"
-            app:destination="@id/itemUkur" />
-    </fragment>
+        tools:layout="@layout/fragment_profil_anak" />
 </navigation>

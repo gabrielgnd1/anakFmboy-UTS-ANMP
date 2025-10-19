@@ -22,12 +22,23 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        // Set the Toolbar as ActionBar
+        setSupportActionBar(binding.toolbar)
 
-
+        // Initialize navController
         navController = (supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment).navController
-        NavigationUI.setupWithNavController(binding.bottomNav, navController)
 
+        // Setup ActionBar with navController and drawerLayout
+        NavigationUI.setupActionBarWithNavController(this, navController, binding.drawerLayout)
+
+        // Setup navigation drawer with navController
+        NavigationUI.setupWithNavController(binding.navView, navController)
+
+        // Setup bottom navigation with navController
         binding.bottomNav.setupWithNavController(navController)
+    }
 
+    override fun onSupportNavigateUp(): Boolean {
+        return NavigationUI.navigateUp(navController, binding.drawerLayout) || super.onSupportNavigateUp()
     }
 }

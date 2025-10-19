@@ -25,10 +25,7 @@ class FragmentProfilAnak : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.btnSimpanProfil.setOnClickListener {
-            val action = FragmentProfilAnakDirections.actionFragmentUkur()
-            it.findNavController().navigate(action)//biar pergi ke fragment ukur
-        }
+
     }
 
 
