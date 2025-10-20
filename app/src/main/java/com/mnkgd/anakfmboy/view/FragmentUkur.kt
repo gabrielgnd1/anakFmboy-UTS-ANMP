@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
@@ -35,25 +36,7 @@ class FragmentUkur : Fragment() {
             val tinggi = binding.inputTB.text.toString()
             val berat = binding.inputBB.text.toString()
             ukurViewModel.saveToFile(usia, tinggi, berat)
-
-
-
-            val action = FragmentUkurDirections.actionFragmenData()
-            it.findNavController().navigate(action)
-
-
+            Toast.makeText(context,  "Data added successfully", Toast.LENGTH_SHORT).show()
         }
-
-
-
-
-
-
-
-
     }
-
-
-
-
 }

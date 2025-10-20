@@ -8,20 +8,12 @@
         android:id="@+id/itemUkur"
         android:name="com.mnkgd.anakfmboy.view.FragmentUkur"
         android:label="fragment_ukur"
-        tools:layout="@layout/fragment_ukur" >
-        <action
-            android:id="@+id/actionFragmenData"
-            app:destination="@id/itemData" />
-    </fragment>
+        tools:layout="@layout/fragment_ukur" />
     <fragment
         android:id="@+id/itemData"
         android:name="com.mnkgd.anakfmboy.view.FragmentData"
         android:label="fragment_data"
-        tools:layout="@layout/fragment_data" >
-        <action
-            android:id="@+id/actionFragmentProfil"
-            app:destination="@id/itemProfile" />
-    </fragment>
+        tools:layout="@layout/fragment_data" />
     <fragment
         android:id="@+id/itemProfile"
         android:name="com.mnkgd.anakfmboy.view.FragmentProfilAnak"

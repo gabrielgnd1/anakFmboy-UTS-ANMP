@@ -53,8 +53,4 @@ class UkurViewModel(application: Application) : AndroidViewModel(application) {
         Log.d("Ukur", "File path: ${fileHelper.getFilePath()}")
         readJsonToLog()
     }
-
-    }
-
-
-
+}

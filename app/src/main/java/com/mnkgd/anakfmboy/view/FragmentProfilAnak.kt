@@ -12,21 +12,15 @@ import com.mnkgd.anakfmboy.databinding.FragmentProfilAnakBinding
 class FragmentProfilAnak : Fragment() {
     private lateinit var binding: FragmentProfilAnakBinding
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentProfilAnakBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
     }
-
-
 }
