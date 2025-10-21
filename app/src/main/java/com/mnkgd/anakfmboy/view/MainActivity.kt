@@ -21,20 +21,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
-        // Set the Toolbar as ActionBar
         setSupportActionBar(binding.toolbar)
-
-        // Initialize navController
         navController = (supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment).navController
-
-        // Setup ActionBar with navController and drawerLayout
         NavigationUI.setupActionBarWithNavController(this, navController, binding.drawerLayout)
-
-        // Setup navigation drawer with navController
         NavigationUI.setupWithNavController(binding.navView, navController)
-
-        // Setup bottom navigation with navController
         binding.bottomNav.setupWithNavController(navController)
     }
 

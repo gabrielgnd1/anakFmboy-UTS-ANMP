@@ -23,13 +23,13 @@ class UkurListAdapter(val ukurList: ArrayList<Ukur>): RecyclerView.Adapter<UkurL
         position: Int
     ) {
         if (position == 0) {
-            // --- THIS IS THE HEADER (Position 0) ---
+            //yang paling atas
             holder.binding.txtAge.text = "Age"
             holder.binding.txtHeight.text = "Height (cm)"
             holder.binding.txtWeight.text = "Weight (kg)"
 
-            // Set text style to BOLD
-            holder.binding.txtAge.setTypeface(null, Typeface.BOLD)
+
+            holder.binding.txtAge.setTypeface(null, Typeface.BOLD) //typeface buat ngeBold
             holder.binding.txtHeight.setTypeface(null, Typeface.BOLD)
             holder.binding.txtWeight.setTypeface(null, Typeface.BOLD)
 
