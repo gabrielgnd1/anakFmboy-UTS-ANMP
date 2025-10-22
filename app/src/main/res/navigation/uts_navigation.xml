@@ -7,16 +7,16 @@
     <fragment
         android:id="@+id/itemUkur"
         android:name="com.mnkgd.anakfmboy.view.FragmentUkur"
-        android:label="fragment_ukur"
+        android:label="fragment ukur"
         tools:layout="@layout/fragment_ukur" />
     <fragment
         android:id="@+id/itemData"
         android:name="com.mnkgd.anakfmboy.view.FragmentData"
-        android:label="fragment_data"
+        android:label="fragment data"
         tools:layout="@layout/fragment_data" />
     <fragment
         android:id="@+id/itemProfile"
         android:name="com.mnkgd.anakfmboy.view.FragmentProfilAnak"
-        android:label="fragment_profil_anak"
+        android:label="fragment profil anak"
         tools:layout="@layout/fragment_profil_anak" />
 </navigation>
