@@ -60,7 +60,7 @@ class FragmentProfilAnak : Fragment() {
             // validasi sederhana
             if (nama.isBlank() || tanggal.isBlank() || genderValue.isBlank()) {
                 Toast.makeText(context, "Mohon lengkapi semua data", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
+                return@setOnClickListener //buat kembali ke @ssetonclicklistener yg atas
             }
 
             // simpan ke SharedPreferences

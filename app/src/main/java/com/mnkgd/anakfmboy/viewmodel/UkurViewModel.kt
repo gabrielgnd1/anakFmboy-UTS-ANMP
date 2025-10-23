@@ -30,16 +30,27 @@ class UkurViewModel(application: Application) : AndroidViewModel(application) {
     private val listType = object : TypeToken<ArrayList<Ukur>>() {}.type
 
     fun refresh() {
-        val json = fileHelper.readFromFile()
-        val list: ArrayList<Ukur> =
-            if (json.isBlank()) arrayListOf()
-            else runCatching { gson.fromJson<ArrayList<Ukur>>(json, listType) }
-                .getOrElse { arrayListOf() }
+        loadingLD.value = true
+        ukurLoadErrorLD.value = false
 
-        ukurLD.value = list
+        try {
+            val json = fileHelper.readFromFile()
+            Log.d("Ukur", "print_file_read: $json")
 
-        Log.d("Ukur", "Loaded data: $json")
+            val list: ArrayList<Ukur> =
+                if (json.isBlank()) arrayListOf()
+                else gson.fromJson<ArrayList<Ukur>>(json, listType)
+
+            ukurLD.value = list
+        } catch (e: Exception) {
+            ukurLoadErrorLD.value = true
+            ukurLD.value = arrayListOf()
+            Log.e("Ukur", "Gagal membaca/parse JSON: ${e.message}", e)
+        } finally {
+            loadingLD.value = false
+        }
     }
+
 
     fun saveToFile(usia: String, tinggi: String, berat: String) {
         val list = ukurLD.value ?: arrayListOf()
