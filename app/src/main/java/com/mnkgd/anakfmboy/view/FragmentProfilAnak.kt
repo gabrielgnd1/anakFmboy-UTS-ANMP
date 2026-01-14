@@ -1,96 +1,76 @@
 package com.mnkgd.anakfmboy.view
 
-import android.app.DatePickerDialog
+import android.app.Fragment
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.mnkgd.anakfmboy.R
 import com.mnkgd.anakfmboy.databinding.FragmentProfilAnakBinding
-import java.text.SimpleDateFormat
-import java.util.*
+import com.mnkgd.anakfmboy.model.Profil
+import com.mnkgd.anakfmboy.viewmodel.ProfilViewModel
 
-class FragmentProfilAnak : Fragment() {
-
-    private lateinit var binding: FragmentProfilAnakBinding
-    private val calendar = Calendar.getInstance()
-    private val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+// Wajib implement interface Listener seperti TodoApp
+class FragmentProfilAnak : Fragment(), ProfilAnakListener {
+    private lateinit var viewModel: ProfilViewModel
+    private lateinit var dataBinding: FragmentProfilAnakBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentProfilAnakBinding.inflate(inflater, container, false)
-        return binding.root
+        // Inisialisasi Data Binding
+        dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_profil_anak, container, false)
+        return dataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // ambil data dari SharedPreferences
-        val sharedPref = requireActivity().getSharedPreferences("profil_anak", 0)
-        binding.inputNama.setText(sharedPref.getString("nama", ""))
-        binding.inputTanggal.setText(sharedPref.getString("tanggal", ""))
+        viewModel = ViewModelProvider(this).get(ProfilViewModel::class.java)
+        viewModel.refresh()
 
-        val gender = sharedPref.getString("gender", "")
-        when (gender) {
-            "Laki-laki" -> binding.radioGroupGender.check(R.id.radioMale)
-            "Perempuan" -> binding.radioGroupGender.check(R.id.radioFem)
-        }
+        // Hubungkan variabel di XML ke Fragment ini
+        dataBinding.listener = this
+        dataBinding.lifecycleOwner = viewLifecycleOwner
 
-        // klik untuk pilih tanggal (DatePicker)
-        binding.inputTanggal.apply {
-            isFocusable = false
-            isClickable = true
-            setOnClickListener { showDatePicker() }
-        }
-
-        // tombol simpan data
-        binding.btnSimpanProfil.setOnClickListener {
-            val nama = binding.inputNama.text.toString()
-            val tanggal = binding.inputTanggal.text.toString()
-            val genderValue = when (binding.radioGroupGender.checkedRadioButtonId) {
-                R.id.radioMale -> "Laki-laki"
-                R.id.radioFem -> "Perempuan"
-                else -> ""
-            }
-
-            // validasi sederhana
-            if (nama.isBlank() || tanggal.isBlank() || genderValue.isBlank()) {
-                Toast.makeText(context, "Mohon lengkapi semua data", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener //buat kembali ke @ssetonclicklistener yg atas
-            }
-
-            // simpan ke SharedPreferences
-            val editor = sharedPref.edit()
-            editor.putString("nama", nama)
-            editor.putString("tanggal", tanggal)
-            editor.putString("gender", genderValue)
-            editor.apply()
-
-            Toast.makeText(context, "Data disimpan", Toast.LENGTH_SHORT).show()
-        }
+        observeViewModel()
     }
 
-    // fungsi untuk menampilkan DatePickerDialog
-    private fun showDatePicker() {
-        val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
+    fun observeViewModel() {
+        viewModel.profilLD.observe(viewLifecycleOwner, Observer {
+            if (it != null) {
+                // Masukkan data profil ke variabel 'profil' di XML
+                dataBinding.profil = it
+            } else {
+                // Jika DB kosong, buat object baru agar tidak error null
+                dataBinding.profil = Profil(1, "", "", "")
+            }
+        })
+    }
 
-        DatePickerDialog(
-            requireContext(),
-            { _, y, m, d ->
-                calendar.set(y, m, d)
-                val selectedDate = calendar.time
-                val formatted = dateFormat.format(selectedDate)
+    // --- Implementasi ProfilAnakListener ---
 
-                // tampilkan ke input dan simpan sebagai format dd/MM/yyyy
-                binding.inputTanggal.setText(formatted)
-            },
-            year, month, day
-        ).show()
+    override fun onSimpanClick(v: View) {
+        // Ambil data terbaru dari input field manual (karena pakai satu arah @{})
+        val nama = dataBinding.inputNama.text.toString()
+        val tgl = dataBinding.inputTanggal.text.toString()
+        val gender = dataBinding.profil?.jenisKelamin ?: ""
+
+        val profilUpdate = Profil(1, nama, tgl, gender)
+
+        viewModel.simpanProfil(profilUpdate)
+        Toast.makeText(v.context, "Profil Berhasil Diperbarui", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onGenderClick(v: View) {
+        // Ambil nilai dari tag RadioButton (Laki-laki / Perempuan)
+        val genderTerpilih = v.tag.toString()
+        dataBinding.profil?.jenisKelamin = genderTerpilih
     }
 }
