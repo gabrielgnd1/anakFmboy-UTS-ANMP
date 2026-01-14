@@ -1,128 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context=".view.FragmentUkur">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+        <variable name="pengukuran" type="com.mnkgd.anakfmboy.model.Pengukuran" />
+        <variable name="listener" type="com.mnkgd.anakfmboy.view.UkurListener" />
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        tools:context=".view.FragmentUkur">
 
-        <!-- Weight Section -->
-        <TextView
-            android:id="@+id/txtBerat"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Berat Badan (KG)"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/weightInputLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtBerat"
-            android:layout_marginTop="8dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inputBB"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/weightInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Masukkan berat badan"
-                android:inputType="numberDecimal"
-                android:minHeight="48dp" />
+                android:hint="Berat Badan (KG)"
+                app:layout_constraintTop_toTopOf="parent">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputBB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <!-- Height Section -->
-        <TextView
-            android:id="@+id/txtTinggi"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Tinggi Badan (cm)"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/weightInputLayout"
-            android:layout_marginTop="24dp" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/heightInputLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtTinggi"
-            android:layout_marginTop="8dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inputTB"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/heightInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Masukkan tinggi badan"
-                android:inputType="numberDecimal"
-                android:minHeight="48dp" />
+                android:hint="Tinggi Badan (cm)"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/weightInputLayout">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputTB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <!-- Age Section -->
-        <TextView
-            android:id="@+id/txtUsia"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Usia (tahun)"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/heightInputLayout"
-            android:layout_marginTop="24dp" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ageInputLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtUsia"
-            android:layout_marginTop="8dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inputUsia"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ageInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Masukkan usia"
-                android:inputType="number"
-                android:minHeight="48dp" />
+                android:hint="Usia (Bulan)"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/heightInputLayout">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputUsia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <Button
+                android:id="@+id/btnTambahData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="TAMBAH DATA"
+                android:onClick="@{listener::onClick}"
+                app:layout_constraintTop_toBottomOf="@+id/ageInputLayout" />
 
-        <!-- Submit Button -->
-        <Button
-            android:id="@+id/btnTambahData"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:backgroundTint="@color/design_default_color_primary"
-            android:text="TAMBAH DATA"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ageInputLayout"
-            android:layout_marginBottom="16dp" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</layout>

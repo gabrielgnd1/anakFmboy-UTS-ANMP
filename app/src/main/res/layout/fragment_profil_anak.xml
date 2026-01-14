@@ -81,10 +81,10 @@
                     android:id="@+id/radioMale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Laki-laki"
+                    android:checked='false'
+                    android:onClick="@{listener::onGenderSelect}"
                     android:tag="Laki-laki"
-                    android:onClick="@{listener::onGenderClick}"
-                    android:checked='@{profil.jenisKelamin.equals("Laki-laki") ? true : false}' />
+                    android:text="Laki-laki" />
 
                 <RadioButton
                     android:id="@+id/radioFem"
@@ -92,7 +92,7 @@
                     android:layout_height="wrap_content"
                     android:text="Perempuan"
                     android:tag="Perempuan"
-                    android:onClick="@{listener::onGenderClick}"
+                    android:onClick="@{listener::onGenderSelect}"
                     android:checked='@{profil.jenisKelamin.equals("Perempuan") ? true : false}' />
             </RadioGroup>
 
@@ -102,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:text="SIMPAN"
-                android:onClick="@{listener::onSimpanClick}"
+                android:onClick="@{listener::onSave}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/radioGroupGender" />
